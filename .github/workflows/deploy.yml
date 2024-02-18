@@ -32,7 +32,7 @@ jobs:
                   node-version: 20
 
             - name: (📦) Installing Dependencies...
-              run: yarn add
+              run: yarn install
 
             - name: (🔨) Buildind...
               run: yarn build:optimize
