@@ -1,0 +1,228 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scrollbar-width: none;
+    scrollbar-color: #2c2a39 #2c2a39;
+}
+
+html {
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+    overflow-x: hidden;
+}
+
+body {
+    max-width: 100vw;
+
+    background: #4776e6;
+    background: linear-gradient(to right, #4776e6, #8e54e9);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+button {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+}
+
+#root {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100vw;
+    height: 100vh;
+
+    max-width: 100vw;
+    max-height: 100vh;
+}
+
+/* == ==> Classes <== == */
+.follow__border__radius {
+    background-clip: padding-box;
+    overflow: hidden;
+}
+
+
+.code__tab {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.code__container {
+    flex: 1;
+    overflow: scroll;
+    counter-reset: step;
+    counter-increment: step 0;
+    margin: 0;
+    padding: 8px 16px;
+    font-size: 1rem;
+
+    .line::before {
+        content: counter(step);
+        counter-increment: step;
+        width: 1rem;
+        margin-right: 1.5rem;
+        display: inline-block;
+        text-align: right;
+        color: rgba(115, 138, 148, .4)
+    }
+}
+
+.button {
+    @extend .follow__border__radius;
+
+    transition: 0.1s;
+    width: 4rem;
+    height: 4rem;
+    cursor: pointer;
+    color: darken(#7878c4, 5);
+
+    &:hover,
+    &--selected {
+        @extend .button;
+
+        border-left: #d4d4d4 2px solid;
+        color: #a9a9f0;
+    }
+
+    svg {
+        margin: 1rem;
+    }
+}
+
+/* == ==> IDs <== == */
+#container {
+    width: 100%;
+    max-width: 70vw;
+    height: fit-content;
+    min-height: 60%;
+
+    border-radius: 0.5rem;
+    color: #d4d4d4;
+    background-color: #232134;
+}
+
+#container__header {
+    display: flex;
+    justify-content: space-between;
+    place-items: center;
+
+    width: auto;
+    height: 2rem;
+    padding: 0 1.5rem;
+
+    background-color: darken(#232134, 2);
+    border-radius: 0.5rem 0.5rem 0 0;
+}
+
+#container__toolbar__helper {
+    width: 100%;
+    height: 2rem;
+
+    span {
+        width: fit-content;
+        height: 2rem;
+        padding: 0 1.5em;
+
+        display: flex;
+        place-items: center;
+        gap: 4px;
+
+        cursor: pointer;
+        color: #b1b1b1;
+        font-size: 14px;
+        background: lighten(#232134, 4);
+        border-radius: 0 2px 0 0;
+
+        &:hover {
+            background: lighten(#232134, 8);
+        }
+    }
+}
+
+#container__toolbar {
+    @extend .follow__border__radius;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    width: 4rem;
+    height: 65vh;
+
+    border-radius: 0 0 0 0.5rem;
+}
+
+#container__header__title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.width {
+    &--fill {
+        width: -webkit-fill-available;
+    }
+}
+
+.flex {
+    display: flex;
+
+    &--center {
+        display: flex;
+        place-items: center;
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    * {
+        scrollbar-width: thin;
+    }
+
+    #container {
+        display: flex;
+        flex-direction: column;
+        max-width: 80vw;
+        min-height: 70vh;
+    }
+
+    #container__content {
+        flex: 1;
+        justify-content: space-between;
+        flex-direction: column-reverse;
+    }
+
+    #container__toolbar {
+        position: relative;
+        flex-direction: row;
+        bottom: 0;
+        height: 4rem;
+        width: auto;
+    }
+
+    .code__container {
+        font-size: 0.9rem;
+    }
+
+    .button:hover,
+    .button--selected,
+    .button--selected:hover {
+        @extend .button;
+
+        border-left: none;
+        border-bottom: #d4d4d4 2px solid;
+        color: #a9a9f0;
+    }
+}
